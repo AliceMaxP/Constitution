@@ -1,0 +1,660 @@
+<!doctype html><html lang="fr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Bloc de constitutionnalité (découverte) · Alice MAXENCE</title><meta name="description" content="Version découverte : révision des articles de la Constitution de 1958, recherche par article ou par thème, entraînement."><meta name="author" content="Alice MAXENCE"><meta name="copyright" content="© 2026 Alice MAXENCE"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231f4fb8%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-size=%2232%22 font-family=%22Georgia,serif%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22%3EBC%3C/text%3E%3C/svg%3E"><meta name="theme-color" content="#f4f5f3"></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout : six textes en tuiles (qui servent de filtre), une recherche, des fiches article avec la référence en grand à gauche. Même famille visuelle que la Carte du Code pénal et les Grands arrêts. */
+:root{
+  --bg:#f4f5f3; --surface:#ffffff; --ink:#1b1d22; --muted:#5a5f68; --line:#dfe2e0; --focus:#1f4fb8; --ok:#1d7a3a; --oks:#e3f3e7; --ko:#b3261e; --kos:#fbe8e6; --warm:#b87500; --new:#c3c8ce;
+  --sC:#1f4fb8; --sCs:#e6edfb;  /* Constitution 1958 */
+  --sD:#b3261e; --sDs:#fbe8e6;  /* DDHC 1789 */
+  --sP:#23883d; --sPs:#e4f4e8;  /* Préambule 1946 */
+  --sE:#0b7d8e; --sEs:#e1f3f5;  /* Charte environnement */
+  --sF:#6a43d6; --sFs:#efe9fc;  /* PFRLR */
+  --sO:#b35a07; --sOs:#fcefe2;  /* OVC */
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#141619; --surface:#1d2024; --ink:#eef0f2; --muted:#a7adb6; --line:#33373d; --focus:#8fb0ff; --ok:#6fd68a; --oks:#1c3323; --ko:#ff8a80; --kos:#3d1f1d; --warm:#f2c14e; --new:#4b5058;
+    --sC:#8fb0ff; --sCs:#1f2a44; --sD:#ff8a80; --sDs:#3d1f1d; --sP:#6fd68a; --sPs:#1c3323;
+    --sE:#5fd0de; --sEs:#17343a; --sF:#b69dff; --sFs:#2c2447; --sO:#ffb066; --sOs:#3d2a17;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141619; --surface:#1d2024; --ink:#eef0f2; --muted:#a7adb6; --line:#33373d; --focus:#8fb0ff; --ok:#6fd68a; --oks:#1c3323; --ko:#ff8a80; --kos:#3d1f1d; --warm:#f2c14e; --new:#4b5058;
+  --sC:#8fb0ff; --sCs:#1f2a44; --sD:#ff8a80; --sDs:#3d1f1d; --sP:#6fd68a; --sPs:#1c3323;
+  --sE:#5fd0de; --sEs:#17343a; --sF:#b69dff; --sFs:#2c2447; --sO:#ffb066; --sOs:#3d2a17;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:28px 60px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-direction:column;gap:12px}
+header h1{font-size:clamp(32px,5.5vw,52px);font-weight:800;letter-spacing:-.02em}
+header .lead{max-width:64ch;color:var(--muted);font-size:17px}
+
+.C{--c:var(--sC);--s:var(--sCs)} .D{--c:var(--sD);--s:var(--sDs)} .P{--c:var(--sP);--s:var(--sPs)}
+.E{--c:var(--sE);--s:var(--sEs)} .F{--c:var(--sF);--s:var(--sFs)} .O{--c:var(--sO);--s:var(--sOs)}
+
+/* Tuiles des sources */
+.sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.src{font:inherit;text-align:left;cursor:pointer;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-top:5px solid var(--c);border-radius:6px 6px 14px 14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.src:hover{border-color:var(--c)}
+.src[aria-pressed="true"]{background:var(--s);border-color:var(--c)}
+.src .yr{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--c)}
+.src b{font-family:var(--display);font-size:15px;line-height:1.2}
+.src small{font-family:var(--display);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.src .bar{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:4px}
+.src .bar i{display:block;height:100%;background:var(--c);border-radius:3px}
+.badge{font-family:var(--display);font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;align-self:flex-start;white-space:nowrap;background:var(--surface)}
+.badge.m{color:var(--ok)} .badge.l{color:var(--warm)} .badge.r{color:var(--ko)}
+/* Progression */
+.prog{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:18px}
+.prog-head{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between}
+.pct{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.pct small{font-size:20px;font-weight:700;color:var(--muted);margin-left:2px}
+.sync{font-size:13.5px;color:var(--muted);max-width:52ch}
+.days{display:flex;flex-direction:column;gap:6px}
+.days .sq{display:flex;gap:4px;flex-wrap:wrap}
+.days .sq i{width:16px;height:16px;border-radius:4px;background:var(--line)}
+.days .sq i.a1{background:var(--ok);opacity:.4} .days .sq i.a2{background:var(--ok);opacity:.7} .days .sq i.a3{background:var(--ok)}
+.days .sq i.today{outline:2px solid var(--ink);outline-offset:1px}
+.days small{font-family:var(--display);font-size:12.5px;color:var(--muted)}
+.tiers{display:flex;flex-direction:column;gap:16px}
+.tier{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:6px 18px;align-items:center}
+.tier h3{font-size:15px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.tier h3 .num{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.tier p{font-size:13.5px;color:var(--muted);line-height:1.4}
+.stack{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--bg)}
+.stack i{height:100%}
+.stack .m{background:var(--ok)} .stack .l{background:var(--warm)} .stack .r{background:var(--ko)} .stack .n{background:var(--new)}
+.stack .k{background:repeating-linear-gradient(135deg,var(--line) 0 4px,transparent 4px 8px)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--display);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend span::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--sw,transparent)}
+.legend .m{--sw:var(--ok)} .legend .l{--sw:var(--warm)} .legend .r{--sw:var(--ko)} .legend .n{--sw:var(--new)}
+.legend .k::before{background:repeating-linear-gradient(135deg,var(--muted) 0 2px,transparent 2px 4px)}
+.save{font-family:var(--display);font-size:12px;font-weight:700;border-radius:999px;padding:1px 9px;margin-left:auto}
+.save.ok{background:var(--oks);color:var(--ok)} .save.warn{background:var(--kos);color:var(--ko)}
+.backup{border-top:1px solid var(--line);padding-top:12px;font-size:14px}
+.backup summary{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;color:var(--muted)}
+.backup[open]{display:flex;flex-direction:column;gap:10px}
+.backup p{color:var(--muted);max-width:60ch}
+.backup input,.backup textarea{font-family:var(--mono);font-size:13px;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);flex:1;min-width:0;width:100%}
+.backup .row{flex-wrap:nowrap}
+.linkbtn{font:inherit;font-family:var(--display);font-size:13px;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px}
+.confirm .btn{font-size:13px;padding:7px 12px}
+.unlock{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ok);background:var(--oks);border-radius:10px;padding:8px 12px}
+.ctx{font-family:var(--display);font-size:13px;font-weight:700;color:var(--c)}
+.opt.long{font-size:15px;line-height:1.4}
+@media (max-width:640px){.tier{grid-template-columns:1fr}}
+.hint{font-size:14px;color:var(--muted);max-width:70ch}
+.hint strong{color:var(--ink);font-weight:600}
+
+.modes{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;align-self:flex-start;flex-wrap:wrap}
+.modes button{font-family:var(--display);font-weight:700;font-size:14px;border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.panel label{font-family:var(--display);font-weight:700;font-size:15px}
+.panel input{font-family:var(--body);font-size:19px;padding:12px 16px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.panel input:focus{border-color:var(--focus);outline:none}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lbl{font-family:var(--display);font-size:13px;font-weight:700;color:var(--muted);margin-right:4px}
+.chip{font-family:var(--body);font-size:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+
+.count{font-family:var(--display);font-size:14px;color:var(--muted)}
+.results{display:flex;flex-direction:column;gap:12px}
+.art{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:118px 1fr;overflow:hidden}
+.art .ref{background:var(--s);color:var(--c);padding:16px 12px;display:flex;flex-direction:column;gap:4px}
+.art .ref .n{font-family:var(--mono);font-weight:700;font-size:22px;line-height:1.1;overflow-wrap:anywhere}
+.art .ref .t{font-family:var(--display);font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;line-height:1.25}
+.art .body{padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.art h3{font-size:19px;font-weight:700}
+.art blockquote{margin:0;padding:2px 0 2px 14px;border-left:3px solid var(--c);font-style:italic;font-size:15.5px;max-width:72ch}
+.art p{font-size:16px;max-width:72ch}
+.dec{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.dec li{font-size:14.5px;line-height:1.4;padding-left:16px;position:relative}
+.dec li::before{content:"";position:absolute;left:2px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--c)}
+.dec .ttl{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-left:0}
+.dec .ttl::before{display:none}
+.kw{display:flex;flex-wrap:wrap;gap:5px}
+.kw span{font-family:var(--display);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 7px}
+.kw span.hit{background:var(--s);color:var(--c);border-color:transparent;font-weight:700}
+.empty{color:var(--muted);padding:12px 4px}
+
+/* Entraînement */
+.dir{display:flex;gap:6px;flex-wrap:wrap}
+.qview:not([hidden]){display:flex;flex-direction:column;gap:16px}
+.prog-main{display:flex;flex-direction:column;gap:6px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.qset{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.opt{font:inherit;font-size:16px;text-align:left;cursor:pointer;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:baseline;min-width:0}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--muted)}
+.opt.ref{font-family:var(--mono);font-weight:700}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt:disabled{cursor:default}
+.opt.good{border-color:var(--ok);background:var(--oks)}
+.opt.bad{border-color:var(--ko);background:var(--kos)}
+.opt.dim{opacity:.55}
+.verdict{font-family:var(--display);font-weight:800;font-size:18px}
+.verdict.good{color:var(--ok)} .verdict.bad{color:var(--ko)}
+.stats{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.stats b{color:var(--ink)}
+@media (max-width:560px){.qset{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:6px 6px 18px 18px;padding:24px;display:flex;flex-direction:column;gap:18px;min-height:240px}
+.card .q{font-size:clamp(19px,3vw,23px);line-height:1.45;max-width:60ch}
+.card .q.big{font-family:var(--mono);font-weight:700;font-size:clamp(30px,6vw,46px);color:var(--c)}
+.answer{background:var(--s);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.answer h3{font-size:21px;color:var(--c)}
+.answer p{max-width:70ch}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border:0;border-radius:10px;padding:10px 18px;cursor:pointer;background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.score{font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:auto;align-self:center}
+footer .sig{border-top:1px solid var(--line);padding-top:10px;margin-top:4px;color:var(--ink);font-family:var(--display);font-size:13px}
+.gauge{height:16px;border-radius:8px;background:var(--bg);border:1px solid var(--line);overflow:hidden;margin-top:6px}
+.gauge i{display:block;height:100%;width:0;background:var(--ok);border-radius:8px;transition:width .4s}
+.gsub{font-family:var(--display);font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.decouv{font-family:var(--display);font-weight:700;font-size:13px;color:var(--sC);background:var(--sCs);border-radius:999px;padding:3px 12px;align-self:flex-start}
+footer{font-size:13.5px;color:var(--muted);max-width:75ch;display:flex;flex-direction:column;gap:6px}
+@media (max-width:560px){
+  .art{grid-template-columns:1fr}
+  .art .ref{flex-direction:row;align-items:baseline;gap:10px;padding:10px 16px}
+  .score{margin-left:0;width:100%}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Alice MAXENCE · Droit constitutionnel</span>
+    <h1>Bloc de constitutionnalité</h1>
+    <span class="decouv">Version découverte · Articles de la Constitution de 1958</span>
+    <p class="lead">Tape un numéro d'article (« 66 », « 49 », « 61-1 ») ou un thème (« garde à vue », « référendum », « Président ») : tu obtiens l'article et ce qu'il prévoit.</p>
+  </header>
+
+  <div id="sources" hidden></div>
+  <p class="hint">Cette <strong>version découverte</strong> couvre les articles de la Constitution du 4 octobre 1958. La version complète ajoute les décisions du Conseil constitutionnel à citer avec chaque article, ainsi que la DDHC de 1789, le Préambule de 1946, la Charte de l'environnement, les PFRLR et les objectifs de valeur constitutionnelle.</p>
+
+  <div class="modes" role="group" aria-label="Mode">
+    <button type="button" id="m-search" aria-pressed="true">Chercher</button>
+    <button type="button" id="m-quiz" aria-pressed="false">S'entraîner</button>
+  </div>
+
+  <div class="panel" id="searchBox">
+    <label for="q">Article ou thème</label>
+    <input id="q" type="search" autocomplete="off" value="garde à vue" placeholder="ex. 66, 49, référendum, Conseil constitutionnel…">
+    <div class="row" id="examples"><span class="lbl">Essaie :</span></div>
+  </div>
+
+  <div class="panel" id="quizBox" hidden>
+    <div class="qset">
+      <span class="lbl" hidden>Contenu</span>
+      <div class="dir" role="group" aria-label="Contenu" hidden>
+        <button type="button" class="chip" id="c-prog" aria-pressed="true">Tout</button>
+        <button type="button" class="chip" id="c-art" aria-pressed="false">Articles seulement</button>
+        <button type="button" class="chip" id="c-dec" aria-pressed="false">Décisions seulement</button>
+      </div>
+      <span class="lbl">Sens des articles</span>
+      <div class="dir" role="group" aria-label="Sens de l'exercice">
+        <button type="button" class="chip" id="d-text" aria-pressed="false">Dispositif → article</button>
+        <button type="button" class="chip" id="d-ref" aria-pressed="false">Article → dispositif</button>
+        <button type="button" class="chip" id="d-mix" aria-pressed="true">Les deux, au hasard</button>
+      </div>
+      <span class="lbl">Format</span>
+      <div class="dir" role="group" aria-label="Format">
+        <button type="button" class="chip" id="f-qcm" aria-pressed="true">QCM à 4 choix</button>
+        <button type="button" class="chip" id="f-card" aria-pressed="false">Cartes à retourner</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="searchView" aria-live="polite">
+    <p class="count" id="count"></p>
+    <div class="results" id="results"></div>
+  </section>
+
+  <section id="quizView" class="qview" hidden>
+    <div class="card" id="card"></div>
+    <section class="prog" aria-labelledby="progTitle">
+      <div class="prog-main">
+        <span class="eyebrow" id="progTitle">Ta progression · Constitution de 1958</span>
+        <span class="pct"><span id="pct">0</span><small>%</small></span>
+        <div class="gauge" role="progressbar" aria-labelledby="progTitle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="gauge"><i id="gaugeFill"></i></div>
+        <span class="gsub" id="gsub"></span>
+        <span class="sync" id="sync"></span>
+      </div>
+      <div id="backupBox"></div>
+      <div id="resetBox"><button type="button" class="linkbtn" id="reset">Remettre ma progression à zéro</button></div>
+    </section>
+  </section>
+
+  <footer>
+    <p>Les citations en italique reprennent les passages les plus cités ; le reste est résumé pour la révision. Vérifie la formulation exacte sur Légifrance ou sur le site du Conseil constitutionnel avant de recopier un article dans une copie.</p>
+    <p class="sig">© 2026 Alice MAXENCE · Bloc de constitutionnalité, version découverte 1.0 du 24 octobre 2026. Tous droits réservés : résumés, mots-clés, exercices, présentation et code. Le texte de la Constitution appartient au domaine public. Reproduction ou réutilisation interdite sans autorisation de l'auteure.</p>
+  </footer>
+</div>
+
+<script>
+const SRC={
+ C:{name:"Constitution de 1958",yr:"1958",short:"Const."}
+};
+const TILE={C:"Constitution"};
+const ALIAS={C:"constitution 1958 const"};
+
+// s: source, n: numéro affiché, ns: numéros cherchables, t: titre, q: citation, r: résumé, k: mots-clés
+const R=[{"s":"C","n":"Préamb.","t":"Préambule de la Constitution","r":"Le peuple français proclame son attachement aux droits de l'homme et à la souveraineté nationale tels que définis par la DDHC de 1789, confirmée et complétée par le Préambule de 1946, ainsi qu'aux droits et devoirs de la Charte de l'environnement de 2004.","d":[],"k":"préambule, bloc de constitutionnalité, renvoi, valeur constitutionnelle, DDHC, Préambule 1946, Charte","q":"","ns":["Préamb."]},{"s":"C","n":"1","t":"République et égalité","r":"La France est une République indivisible, laïque, démocratique et sociale ; elle assure l'égalité devant la loi sans distinction d'origine, de race ou de religion et respecte toutes les croyances. Son organisation est décentralisée. La loi favorise l'égal accès des femmes et des hommes aux mandats et responsabilités.","d":[],"k":"laïcité, indivisibilité, égalité, décentralisation, parité, croyances, religion, République, Alsace-Moselle, statistiques ethniques, neutralité","q":"","ns":["1"]},{"s":"C","n":"2","t":"Langue, emblèmes et devise","r":"La langue de la République est le français. L'emblème est le drapeau tricolore, l'hymne La Marseillaise, la devise « Liberté, Égalité, Fraternité ». Son principe : gouvernement du peuple, par le peuple et pour le peuple.","d":[],"k":"langue française, fraternité, devise, drapeau, Marseillaise, langues régionales, aide aux migrants, délit de solidarité","q":"Son principe est : gouvernement du peuple, par le peuple et pour le peuple.","ns":["2"]},{"s":"C","n":"3","t":"Souveraineté et suffrage","r":"La souveraineté nationale appartient au peuple, qui l'exerce par ses représentants et par le référendum. Le suffrage est universel, égal et secret.","d":[],"k":"souveraineté nationale, peuple, suffrage universel, référendum, vote, électeurs, peuple corse","q":"La souveraineté nationale appartient au peuple qui l'exerce par ses représentants et par la voie du référendum.","ns":["3"]},{"s":"C","n":"4","t":"Partis politiques","r":"Les partis concourent à l'expression du suffrage et se forment librement. La loi garantit l'expression pluraliste des opinions et la participation équitable des partis à la vie démocratique.","d":[],"k":"partis politiques, pluralisme, opposition, dissolution de groupements","q":"","ns":["4"]},{"s":"C","n":"5","t":"Rôle du Président","r":"Le Président veille au respect de la Constitution et assure, par son arbitrage, le fonctionnement régulier des pouvoirs publics. Il est garant de l'indépendance nationale, de l'intégrité du territoire et du respect des traités.","d":[],"k":"Président de la République, arbitrage, garant, indépendance nationale","q":"","ns":["5"]},{"s":"C","n":"6","t":"Élection du Président","r":"Le Président est élu pour cinq ans au suffrage universel direct (quinquennat depuis 2000) ; nul ne peut exercer plus de deux mandats consécutifs (2008).","d":[],"k":"quinquennat, élection présidentielle, suffrage universel direct, mandats","q":"","ns":["6"]},{"s":"C","n":"8","t":"Nomination du Gouvernement","r":"Le Président nomme le Premier ministre et met fin à ses fonctions sur présentation de sa démission ; il nomme les autres membres du Gouvernement sur proposition du Premier ministre.","d":[],"k":"Premier ministre, nomination, Gouvernement, démission, pouvoir propre","q":"","ns":["8"]},{"s":"C","n":"11","t":"Référendum","r":"Le Président peut soumettre au référendum un projet de loi sur l'organisation des pouvoirs publics, la politique économique, sociale ou environnementale, ou la ratification d'un traité. Depuis 2008, un référendum d'initiative partagée peut être organisé à l'initiative d'1/5 des parlementaires soutenue par 1/10 des électeurs.","d":[],"k":"référendum, RIP, référendum d'initiative partagée, pouvoir propre, loi référendaire","q":"","ns":["11"]},{"s":"C","n":"12","t":"Dissolution","r":"Le Président peut dissoudre l'Assemblée nationale après avoir consulté le Premier ministre et les présidents des assemblées ; les élections ont lieu 20 à 40 jours après. Pas de nouvelle dissolution dans l'année qui suit.","d":[],"k":"dissolution, Assemblée nationale, élections législatives, pouvoir propre","q":"","ns":["12"]},{"s":"C","n":"13","t":"Pouvoir de nomination","r":"Le Président signe les ordonnances et les décrets délibérés en Conseil des ministres et nomme aux emplois civils et militaires de l'État. Depuis 2008, certaines nominations sont soumises à l'avis des commissions parlementaires, qui peuvent s'y opposer à 3/5 des suffrages.","d":[],"k":"nominations, décrets en Conseil des ministres, préfets, emplois civils et militaires, avis des commissions, veto","q":"","ns":["13"]},{"s":"C","n":"15","t":"Chef des armées","r":"Le Président est le chef des armées ; il préside les conseils supérieurs de la défense nationale.","d":[],"k":"chef des armées, défense nationale, dissuasion","q":"","ns":["15"]},{"s":"C","n":"16","t":"Pouvoirs exceptionnels","r":"En cas de menace grave et immédiate sur les institutions, l'indépendance de la Nation, l'intégrité du territoire ou l'exécution des engagements internationaux, lorsque le fonctionnement régulier des pouvoirs publics est interrompu, le Président prend les mesures exigées par les circonstances. Le Parlement se réunit de plein droit. Après 30 jours, le Conseil constitutionnel peut être saisi ; après 60 jours, il se prononce de plein droit.","d":[],"k":"article 16, pouvoirs exceptionnels, crise, circonstances exceptionnelles, menace grave, putsch, acte de gouvernement","q":"","ns":["16"]},{"s":"C","n":"19","t":"Contreseing","r":"Les actes du Président sont contresignés par le Premier ministre et les ministres responsables, sauf les pouvoirs propres : art. 8 al. 1, 11, 12, 16, 18, 54, 56 et 61.","d":[],"k":"contreseing, pouvoirs propres, pouvoirs partagés, Président","q":"","ns":["19"]},{"s":"C","n":"20","t":"Rôle du Gouvernement","r":"Le Gouvernement détermine et conduit la politique de la Nation ; il dispose de l'administration et de la force armée. Il est responsable devant le Parlement (art. 49 et 50).","d":[],"k":"Gouvernement, politique de la Nation, administration, force armée, responsabilité politique, politique pénale","q":"Le Gouvernement détermine et conduit la politique de la Nation.","ns":["20"]},{"s":"C","n":"21","t":"Premier ministre","r":"Le Premier ministre dirige l'action du Gouvernement, est responsable de la défense nationale, assure l'exécution des lois et exerce le pouvoir réglementaire. Il nomme aux emplois civils et militaires sous réserve de l'art. 13.","d":[],"k":"Premier ministre, pouvoir réglementaire, police administrative générale, exécution des lois, défense nationale, décret","q":"","ns":["21"]},{"s":"C","n":"23","t":"Incompatibilités ministérielles","r":"Les fonctions de membre du Gouvernement sont incompatibles avec tout mandat parlementaire, toute fonction de représentation professionnelle nationale, tout emploi public et toute activité professionnelle.","d":[],"k":"incompatibilité, ministres, mandat parlementaire","q":"","ns":["23"]},{"s":"C","n":"24","t":"Le Parlement","r":"Le Parlement vote la loi, contrôle l'action du Gouvernement et évalue les politiques publiques. Il comprend l'Assemblée nationale (577 députés au plus) et le Sénat (348 sénateurs au plus), qui représente les collectivités territoriales.","d":[],"k":"Parlement, Assemblée nationale, Sénat, contrôle, évaluation, bicamérisme","q":"","ns":["24"]},{"s":"C","n":"26","t":"Immunités parlementaires","r":"Aucun parlementaire ne peut être poursuivi pour ses opinions ou votes émis dans l'exercice de ses fonctions (irresponsabilité). Il ne peut faire l'objet d'une arrestation ou d'une mesure privative ou restrictive de liberté qu'avec l'autorisation du Bureau de son assemblée, sauf crime ou délit flagrant ou condamnation définitive (inviolabilité).","d":[],"k":"immunité parlementaire, irresponsabilité, inviolabilité, arrestation, flagrant délit, garde à vue, Bureau, parlementaire","q":"","ns":["26"]},{"s":"C","n":"34","t":"Domaine de la loi","r":"La loi fixe notamment les règles sur les garanties fondamentales accordées aux citoyens pour l'exercice des libertés publiques, la détermination des crimes et délits et des peines, la procédure pénale, l'amnistie, la création d'ordres de juridiction et le statut des magistrats, l'assiette et le taux des impôts.","d":[],"k":"domaine de la loi, compétence du législateur, incompétence négative, libertés publiques, crimes et délits, procédure pénale, amnistie, impôt, garanties fondamentales, neutrons législatifs","q":"","ns":["34"]},{"s":"C","n":"35","t":"Guerre et interventions armées","r":"La déclaration de guerre est autorisée par le Parlement. Le Gouvernement informe le Parlement d'une intervention des forces armées à l'étranger dans les 3 jours ; au-delà de 4 mois, la prolongation doit être autorisée par le Parlement.","d":[],"k":"guerre, opérations extérieures, OPEX, forces armées, autorisation","q":"","ns":["35"]},{"s":"C","n":"36","t":"État de siège (et état d'urgence)","r":"L'état de siège est décrété en Conseil des ministres ; sa prorogation au-delà de 12 jours doit être autorisée par le Parlement. L'état d'urgence n'est pas dans la Constitution : il vient de la loi du 3 avril 1955.","d":[],"k":"état de siège, état d'urgence, loi de 1955, assignation à résidence, perquisitions administratives, terrorisme, crise, pouvoirs de police, autorité militaire","q":"","ns":["36"]},{"s":"C","n":"37","t":"Domaine réglementaire","r":"Les matières autres que celles de la loi relèvent du règlement. Les textes de forme législative intervenus dans ces matières peuvent être modifiés par décret, après avis du Conseil d'État ou après que le Conseil constitutionnel a constaté leur caractère réglementaire (délégalisation, décisions « L »).","d":[],"k":"domaine réglementaire, pouvoir réglementaire autonome, délégalisation, contraventions, décret","q":"","ns":["37"]},{"s":"C","n":"37-1","t":"Expérimentation","r":"La loi et le règlement peuvent comporter, pour un objet et une durée limités, des dispositions à caractère expérimental.","d":[],"k":"expérimentation, dérogation, égalité","q":"","ns":["37-1"]},{"s":"C","n":"38","t":"Ordonnances","r":"Le Gouvernement peut, pour exécuter son programme, demander au Parlement l'autorisation de prendre par ordonnances des mesures du domaine de la loi, pour un délai limité. Elles sont prises en Conseil des ministres après avis du Conseil d'État et deviennent caduques si le projet de loi de ratification n'est pas déposé à temps. La ratification doit être expresse.","d":[],"k":"ordonnances, habilitation, ratification, loi d'habilitation, caducité","q":"","ns":["38"]},{"s":"C","n":"39","t":"Initiative des lois","r":"L'initiative des lois appartient au Premier ministre (projets) et aux parlementaires (propositions). Les projets sont délibérés en Conseil des ministres après avis du Conseil d'État et accompagnés d'une étude d'impact.","d":[],"k":"initiative des lois, projet de loi, proposition de loi, étude d'impact, avis du Conseil d'État","q":"","ns":["39"]},{"s":"C","n":"40","t":"Irrecevabilité financière","r":"Les propositions et amendements des parlementaires sont irrecevables s'ils diminuent les ressources publiques ou créent ou aggravent une charge publique.","d":[],"k":"irrecevabilité financière, amendements, charge publique, parlementarisme rationalisé","q":"","ns":["40"]},{"s":"C","n":"41","t":"Irrecevabilité législative","r":"Le Gouvernement ou le président de l'assemblée peut opposer l'irrecevabilité à une proposition ou un amendement qui n'est pas du domaine de la loi ou qui empiète sur une délégation accordée au titre de l'art. 38. En cas de désaccord, le Conseil constitutionnel statue sous 8 jours.","d":[],"k":"irrecevabilité, domaine de la loi, amendements, parlementarisme rationalisé","q":"","ns":["41"]},{"s":"C","n":"44","t":"Droit d'amendement et vote bloqué","r":"Parlementaires et Gouvernement ont le droit d'amendement. Le Gouvernement peut demander à l'assemblée de se prononcer par un seul vote sur tout ou partie du texte, avec les seuls amendements qu'il retient (vote bloqué).","d":[],"k":"droit d'amendement, vote bloqué, procédure législative","q":"","ns":["44"]},{"s":"C","n":"45","t":"Navette et cavaliers","r":"Les textes font la navette entre les deux assemblées. En première lecture, tout amendement est recevable s'il présente un lien, même indirect, avec le texte. En cas de désaccord, une commission mixte paritaire est réunie ; le Gouvernement peut donner le dernier mot à l'Assemblée nationale.","d":[],"k":"navette, cavaliers législatifs, commission mixte paritaire, CMP, procédure accélérée, dernier mot, amendements","q":"","ns":["45"]},{"s":"C","n":"46","t":"Lois organiques","r":"Les lois organiques suivent une procédure renforcée (délai de réflexion, majorité absolue de l'Assemblée en dernière lecture en cas de désaccord) et sont soumises obligatoirement au Conseil constitutionnel.","d":[],"k":"lois organiques, procédure, contrôle obligatoire","q":"","ns":["46"]},{"s":"C","n":"47-1","t":"Lois de financement de la sécurité sociale","r":"Le Parlement vote les projets de loi de financement de la sécurité sociale. S'il ne s'est pas prononcé dans les 50 jours, le projet peut être mis en œuvre par ordonnance.","d":[],"k":"sécurité sociale, LFSS, retraites, finances sociales, délai","q":"","ns":["47-1","47"]},{"s":"C","n":"48","t":"Ordre du jour","r":"L'ordre du jour est fixé par chaque assemblée : deux semaines sur quatre pour le Gouvernement, une semaine pour le contrôle et l'évaluation, un jour par mois pour l'opposition et les groupes minoritaires. Au moins une séance par semaine est réservée aux questions au Gouvernement.","d":[],"k":"ordre du jour, opposition, questions au Gouvernement, contrôle","q":"","ns":["48"]},{"s":"C","n":"49","t":"Responsabilité du Gouvernement","r":"Al. 1 : engagement de responsabilité sur le programme. Al. 2 : motion de censure signée par 1/10 des députés, adoptée à la majorité absolue des membres. Al. 3 : le Premier ministre peut engager sa responsabilité sur un texte, adopté sauf censure ; depuis 2008, limité aux lois de finances, de financement de la sécurité sociale et à un autre texte par session.","d":[],"k":"motion de censure, 49-3, engagement de responsabilité, question de confiance, responsabilité politique, parlementarisme rationalisé","q":"","ns":["49"]},{"s":"C","n":"50","t":"Démission du Gouvernement","r":"Le Premier ministre remet la démission du Gouvernement lorsque l'Assemblée adopte une motion de censure ou désapprouve le programme ou une déclaration de politique générale.","d":[],"k":"démission, motion de censure, responsabilité politique","q":"","ns":["50"]},{"s":"C","n":"53-1","t":"Asile","r":"La République peut conclure avec les États européens des accords répartissant l'examen des demandes d'asile. Les autorités gardent toujours le droit de donner asile à tout étranger persécuté pour son action en faveur de la liberté ou qui sollicite la protection de la France pour un autre motif.","d":[],"k":"asile, Schengen, Dublin, étrangers, réfugiés, accords européens","q":"","ns":["53-1"]},{"s":"C","n":"54","t":"Contrôle des engagements internationaux","r":"Si le Conseil constitutionnel, saisi par le Président, le Premier ministre, un président d'assemblée ou 60 députés ou sénateurs, déclare qu'un engagement international comporte une clause contraire à la Constitution, la ratification n'est possible qu'après révision.","d":[],"k":"traités, ratification, révision, contrôle de constitutionnalité, Union européenne","q":"","ns":["54"]},{"s":"C","n":"55","t":"Supériorité des traités","r":"Les traités régulièrement ratifiés ont, dès leur publication, une autorité supérieure à celle des lois, sous réserve de réciprocité.","d":[],"k":"supériorité des traités, conventionnalité, hiérarchie des normes, réciprocité, IVG, Nicolo, Jacques Vabre, CEDH","q":"Les traités ou accords régulièrement ratifiés ou approuvés ont, dès leur publication, une autorité supérieure à celle des lois, sous réserve, pour chaque accord ou traité, de son application par l'autre partie.","ns":["55"]},{"s":"C","n":"56","t":"Composition du Conseil constitutionnel","r":"Neuf membres nommés pour neuf ans non renouvelables, renouvelés par tiers tous les trois ans : trois par le Président de la République, trois par le président de l'Assemblée, trois par le président du Sénat. Les anciens Présidents de la République sont membres de droit. Le président du Conseil, nommé par le Président de la République, a voix prépondérante.","d":[],"k":"Conseil constitutionnel, composition, nomination, membres de droit, neuf ans","q":"","ns":["56"]},{"s":"C","n":"58 à 60","t":"Contentieux électoral et référendaire","r":"Le Conseil constitutionnel veille à la régularité de l'élection présidentielle (58), statue sur la régularité de l'élection des députés et sénateurs (59) et veille à la régularité des référendums (60).","d":[],"k":"contentieux électoral, élection présidentielle, législatives, référendum, juge électoral","q":"","ns":["58","59","60"]},{"s":"C","n":"61","t":"Contrôle a priori","r":"Les lois organiques et les règlements des assemblées sont soumis obligatoirement au Conseil avant promulgation. Les lois ordinaires peuvent lui être déférées par le Président, le Premier ministre, les présidents des assemblées ou, depuis 1974, 60 députés ou 60 sénateurs. Délai d'un mois, huit jours en cas d'urgence.","d":[],"k":"contrôle a priori, saisine, 60 députés, contrôle de constitutionnalité, promulgation, loi organique","q":"","ns":["61"]},{"s":"C","n":"61-1","t":"Question prioritaire de constitutionnalité","r":"Lorsque, dans une instance en cours, il est soutenu qu'une disposition législative porte atteinte aux droits et libertés que la Constitution garantit, le Conseil peut être saisi sur renvoi du Conseil d'État ou de la Cour de cassation. Créée en 2008, en vigueur depuis le 1er mars 2010.","d":[],"k":"QPC, question prioritaire de constitutionnalité, contrôle a posteriori, filtre, renvoi, droits et libertés, changement de circonstances, garde à vue","q":"Lorsque, à l'occasion d'une instance en cours devant une juridiction, il est soutenu qu'une disposition législative porte atteinte aux droits et libertés que la Constitution garantit, le Conseil constitutionnel peut être saisi de cette question sur renvoi du Conseil d'État ou de la Cour de cassation qui se prononce dans un délai déterminé.","ns":["61-1"]},{"s":"C","n":"62","t":"Effets des décisions","r":"Une disposition déclarée inconstitutionnelle a priori ne peut être promulguée. Celle déclarée inconstitutionnelle sur QPC est abrogée à compter de la publication de la décision ou d'une date ultérieure fixée par celle-ci. Les décisions ne sont susceptibles d'aucun recours et s'imposent à toutes les autorités.","d":[],"k":"autorité de chose jugée, abrogation, effets dans le temps, modulation, réserves d'interprétation, décisions du Conseil constitutionnel","q":"","ns":["62"]},{"s":"C","n":"64","t":"Indépendance de l'autorité judiciaire","r":"Le Président est garant de l'indépendance de l'autorité judiciaire, assisté du Conseil supérieur de la magistrature. Une loi organique fixe le statut des magistrats. Les magistrats du siège sont inamovibles.","d":[],"k":"indépendance, autorité judiciaire, magistrats, inamovibilité, siège, parquet, CSM","q":"","ns":["64"]},{"s":"C","n":"65","t":"Conseil supérieur de la magistrature","r":"Le CSM a une formation pour le siège et une pour le parquet. Il fait des propositions ou donne un avis conforme pour la nomination des magistrats du siège, et un simple avis pour ceux du parquet.","d":[],"k":"CSM, magistrats, nomination, parquet, siège, discipline","q":"","ns":["65"]},{"s":"C","n":"66","t":"Autorité judiciaire, gardienne de la liberté individuelle","r":"Nul ne peut être arbitrairement détenu. L'autorité judiciaire, gardienne de la liberté individuelle, en assure le respect. Le Conseil limite aujourd'hui la liberté individuelle au sens de l'art. 66 à la protection contre les privations de liberté ; les autres libertés relèvent des art. 2 et 4 DDHC.","d":[],"k":"liberté individuelle, autorité judiciaire, détention arbitraire, garde à vue, parquet, procureur, JLD, police judiciaire, hospitalisation sans consentement, rétention, privation de liberté, contrôle d'identité, police municipale","q":"Nul ne peut être arbitrairement détenu. L'autorité judiciaire, gardienne de la liberté individuelle, assure le respect de ce principe dans les conditions prévues par la loi.","ns":["66"]},{"s":"C","n":"66-1","t":"Abolition de la peine de mort","r":"Nul ne peut être condamné à la peine de mort (révision du 23 février 2007 ; abolition législative de 1981).","d":[],"k":"peine de mort, abolition, Badinter, révision 2007","q":"Nul ne peut être condamné à la peine de mort.","ns":["66-1"]},{"s":"C","n":"67","t":"Statut pénal du Président","r":"Le Président n'est pas responsable des actes accomplis en cette qualité. Pendant son mandat, il ne peut être requis de témoigner ni faire l'objet d'une action, d'un acte d'information, d'instruction ou de poursuite ; les délais de prescription sont suspendus et les procédures reprennent un mois après la fin du mandat.","d":[],"k":"Président, irresponsabilité, inviolabilité, immunité, statut pénal, prescription","q":"","ns":["67"]},{"s":"C","n":"68","t":"Destitution du Président","r":"Le Président ne peut être destitué qu'en cas de manquement à ses devoirs manifestement incompatible avec l'exercice de son mandat, par le Parlement constitué en Haute Cour, à la majorité des deux tiers.","d":[],"k":"destitution, Haute Cour, responsabilité du Président","q":"","ns":["68"]},{"s":"C","n":"68-1","t":"Responsabilité pénale des ministres","r":"Les membres du Gouvernement sont pénalement responsables des actes accomplis dans l'exercice de leurs fonctions et qualifiés crimes ou délits. Ils sont jugés par la Cour de justice de la République (12 parlementaires et 3 magistrats de la Cour de cassation).","d":[],"k":"ministres, Cour de justice de la République, CJR, responsabilité pénale","q":"","ns":["68-1"]},{"s":"C","n":"71-1","t":"Défenseur des droits","r":"Le Défenseur des droits veille au respect des droits et libertés par les administrations et les services publics. Il peut être saisi par toute personne qui s'estime lésée. Nommé pour six ans non renouvelables. Il est notamment compétent pour la déontologie des forces de sécurité.","d":[],"k":"Défenseur des droits, déontologie, forces de sécurité, police, contrôle, réclamation, discriminations","q":"","ns":["71-1"]},{"s":"C","n":"72","t":"Collectivités territoriales","r":"Les collectivités s'administrent librement par des conseils élus et disposent d'un pouvoir réglementaire. Aucune ne peut exercer de tutelle sur une autre. Le représentant de l'État a la charge des intérêts nationaux, du contrôle administratif et du respect des lois.","d":[],"k":"collectivités territoriales, libre administration, préfet, décentralisation, contrôle administratif, tutelle, subsidiarité, maire","q":"","ns":["72"]},{"s":"C","n":"72-2","t":"Autonomie financière","r":"Les collectivités bénéficient de ressources dont elles disposent librement. Leurs ressources propres doivent représenter une part déterminante de leurs ressources. Tout transfert de compétences s'accompagne de ressources équivalentes.","d":[],"k":"autonomie financière, ressources propres, compensation, finances locales","q":"","ns":["72-2"]},{"s":"C","n":"73 et 74","t":"Outre-mer","r":"Dans les départements et régions d'outre-mer (art. 73), les lois s'appliquent de plein droit, avec des adaptations possibles (identité législative). Les collectivités d'outre-mer (art. 74) ont un statut propre fixé par loi organique (spécialité législative).","d":[],"k":"outre-mer, DROM, COM, identité législative, spécialité législative","q":"","ns":["73","74"]},{"s":"C","n":"75-1","t":"Langues régionales","r":"Les langues régionales appartiennent au patrimoine de la France (révision de 2008).","d":[],"k":"langues régionales, patrimoine","q":"","ns":["75-1"]},{"s":"C","n":"88-1","t":"Union européenne","r":"La République participe à l'Union européenne. La transposition des directives est une exigence constitutionnelle, sauf si elle va à l'encontre d'une règle ou d'un principe inhérent à l'identité constitutionnelle de la France.","d":[],"k":"Union européenne, transposition des directives, identité constitutionnelle, droit de l'Union, primauté","q":"","ns":["88-1"]},{"s":"C","n":"88-2","t":"Mandat d'arrêt européen","r":"La loi fixe les règles relatives au mandat d'arrêt européen en application des actes de l'Union (révision de 2003).","d":[],"k":"mandat d'arrêt européen, coopération pénale, extradition, remise","q":"","ns":["88-2"]},{"s":"C","n":"89","t":"Révision de la Constitution","r":"L'initiative appartient au Président, sur proposition du Premier ministre, et aux parlementaires. Le texte est voté en termes identiques par les deux assemblées, puis approuvé par référendum ou, pour un projet, par le Congrès à 3/5. Pas de révision en cas d'atteinte à l'intégrité du territoire ; la forme républicaine du Gouvernement ne peut être révisée.","d":[],"k":"révision constitutionnelle, Congrès, référendum, pouvoir constituant, forme républicaine, supraconstitutionnalité","q":"La forme républicaine du Gouvernement ne peut faire l'objet d'une révision.","ns":["89"]}];
+
+// ——— Recherche ———
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g," ");
+const STOP=new Set("de la le les des du et en a au aux un une pour par sur d l qui que est dans ou son sa ses ce cette il elle pas ne se avec sans art article al alinea n".split(" "));
+const words=s=>norm(s).split(/[^a-z0-9]+/).filter(w=>w&&!STOP.has(w)&&!/^\d+$/.test(w));
+const stem=t=>t.length<=5?t:t.slice(0,Math.max(5,t.length-2));
+const hits=(ws,t)=>{const s=stem(t);return ws.some(w=>w.startsWith(s));};
+
+const DATA=R.map((r,i)=>({...r,i,
+  kws:r.k.split(",").map(s=>s.trim()).filter(Boolean),
+  wt:words(r.t), wk:words(r.k), wr:words(r.r+" "+r.q), wd:words(r.d.join(" ")), wa:words(ALIAS[r.s]),
+  dn:norm(r.d.join(" | "))
+}));
+
+function parse(q){
+  const n=norm(q);
+  const nums=[...n.matchAll(/\d+(?:-\d+)?/g)].map(m=>m[0]);
+  const al=/\b(al|alinea)\b/.test(n);
+  return {nums:[...new Set(nums)], toks:[...new Set(words(n.replace(/\d+(?:-\d+)?/g," ")))], al};
+}
+function search(q, src){
+  const {nums,toks,al}=parse(q);
+  const list=DATA.filter(d=>!src||d.s===src);
+  if(!nums.length&&!toks.length) return list.map(d=>({d,hit:[]}));
+  return list.map(d=>{
+    let score=0,n=0;
+    for(const x of nums){
+      let s=0;
+      if(d.ns.includes(x)) s+=20;
+      else if((x.length>=4||x.includes("-"))&&new RegExp("(^|[^0-9-])"+x.replace("-","\\-")+"([^0-9]|$)").test(d.dn)) s+=6;
+      if(s){n++;score+=s;}
+    }
+    for(const t of toks){
+      let s=0;
+      if(hits(d.wt,t)) s+=5;
+      if(hits(d.wk,t)) s+=4;
+      if(hits(d.wr,t)) s+=2;
+      if(hits(d.wd,t)) s+=1;
+      if(hits(d.wa,t)) s+=1;
+      if(s){n++;score+=s;}
+    }
+    if(al&&n&&d.s==="P") score+=10;
+    const ph=toks.join(" ");
+    if(toks.length>1&&d.kws.some(k=>words(k).join(" ")===ph)) score+=6;
+    score+=n*n*3;
+    const hit=d.kws.filter(k=>toks.some(t=>words(k).some(w=>w.startsWith(stem(t)))));
+    return {d,score,n,hit};
+  }).filter(r=>r.score>0).sort((a,b)=>b.n-a.n||b.score-a.score);
+}
+
+// ——— Rendu ———
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function refLabel(d){
+  if(d.s==="F"||d.s==="O") return SRC[d.s].short;
+  if(d.n==="Préamb.") return "Préamb.";
+  return (d.s==="P"?"Al. ":"Art. ")+d.n;
+}
+function fullRef(d){
+  if(d.s==="F"||d.s==="O") return SRC[d.s].short+" · "+d.t;
+  return SRC[d.s].short+", "+(d.n==="Préamb."?"préambule":(d.s==="P"?"al. ":"art. ")+d.n);
+}
+function card(r){
+  const d=r.d;
+  return `<article class="art ${d.s}">
+    <div class="ref"><span class="n">${esc(refLabel(d))}</span><span class="t">${esc(SRC[d.s].short)}</span>${badge(d)}</div>
+    <div class="body">
+      <h3>${esc(d.t)}</h3>
+      ${d.q?`<blockquote>« ${esc(d.q)} »</blockquote>`:""}
+      <p>${esc(d.r)}</p>
+      ${d.d.length?`<ul class="dec"><li class="ttl">À citer</li>${d.d.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+      ${d.kws.length?`<div class="kw">${d.kws.map(k=>`<span class="${r.hit.includes(k)?"hit":""}">${esc(k)}</span>`).join("")}</div>`:""}
+    </div></article>`;
+}
+
+let src="", mode="search", dir="mix";
+function render(){
+  const q=$("q").value, res=search(q,src), top=res.slice(0,30), {nums,toks}=parse(q);
+  const scope=src?` dans « ${TILE[src]} »`:"";
+  $("count").textContent=(nums.length||toks.length)
+    ? (res.length?`${res.length} résultat${res.length>1?"s":""}${scope}${res.length>30?" (30 premiers affichés)":""}, du plus pertinent au moins pertinent`:"")
+    : `${res.length} entrées${scope}, dans l'ordre du texte`;
+  $("results").innerHTML=top.length?top.map(card).join("")
+    :`<p class="empty">Rien ne correspond${scope}. Essaie un mot plus général (« liberté », « police », « égalité ») ou reviens au bloc entier.</p>`;
+}
+
+// Tuiles
+const tiles=$("sources");
+function renderTiles(){
+  tiles.innerHTML=Object.keys(SRC).map(k=>{
+    const c=DATA.filter(d=>d.s===k), m=c.filter(d=>box("A|"+ek(d))>=3).length, pc=Math.round(100*m/c.length);
+    return `<button type="button" class="src ${k}" data-s="${k}" aria-pressed="${k===src}"><span class="yr">${SRC[k].yr}</span><b>${TILE[k]}</b><small>${c.length} entrée${c.length>1?"s":""} · ${pc} % maîtrisé${pc>1?"s":""}</small><span class="bar" aria-hidden="true"><i style="width:${pc}%"></i></span></button>`;
+  }).join("");
+}
+tiles.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  src = src===b.dataset.s ? "" : b.dataset.s;
+  tiles.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.s===src));
+  if(mode==="search") render(); else { newCard(); renderProgress(); }
+});
+
+["garde à vue","66","49","référendum","61-1","Président","état d'urgence","collectivités","laïcité","traités"].filter(x=>search(x,"").length).forEach(x=>{
+  const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x;
+  b.onclick=()=>{$("q").value=x;render();$("q").focus();};
+  $("examples").appendChild(b);
+});
+$("q").addEventListener("input",render);
+
+// ——— Entraînement ———
+// Trois paliers : 1 articles, 2 rattacher une décision à son texte, 3 retrouver la décision et sa portée.
+// Chaque question suit une boîte de Leitner (0 à 5) ; « maîtrisée » à partir de 3.
+const ek=d=>d.s+":"+(d.n||d.t);
+const DEC_RE=/^(\d{2,4}-\d+(?:\/\d+)?\s(?:DC|QPC|L|RIP)\b|CE[\s,]|Cass\.|TC\b)/;
+const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
+const DECS=[];
+DATA.forEach(d=>{
+  const keys=new Set();
+  d.d.forEach(txt=>{
+    if(!DEC_RE.test(txt)) return;
+    const k=txt.indexOf(" : ");
+    const ref=k>0?txt.slice(0,k):txt, ap=k>0?txt.slice(k+3):"";
+    const m=ref.match(/\d{2,4}-\d+/);
+    const x=m?m[0]:norm(ref).slice(0,40);
+    let key=ek(d)+"#"+x; while(keys.has(key)) key+="+"; keys.add(key);
+    DECS.push({key,e:d,ref,ap,x});
+  });
+});
+const ITEMS=[];
+DATA.forEach(d=>ITEMS.push({id:"A|"+ek(d),lv:1,e:d}));
+DECS.forEach(x=>{
+  ITEMS.push({id:"R|"+x.key,lv:2,e:x.e,dec:x});
+  if(x.ap) ITEMS.push({id:"D|"+x.key,lv:3,e:x.e,dec:x});
+});
+const parentId=it=>it.lv===1?null:it.lv===2?"A|"+ek(it.e):"R|"+it.dec.key;
+const kidsOf=id=>ITEMS.filter(it=>parentId(it)===id);
+
+// ——— État de progression ———
+let P={v:1,items:{},days:{},best:0,resetAt:0};
+const box=id=>(P.items[id]||[0])[0];
+const seenIt=id=>!!P.items[id];
+const unlocked=it=>true;
+function status(it){
+  if(!unlocked(it)) return "k";
+  const s=P.items[it.id]; if(!s) return "n";
+  return s[0]>=3?"m":s[0]>=1?"l":"r";
+}
+function badge(d){
+  const st=status({id:"A|"+ek(d),lv:1,e:d});
+  return st==="m"?`<span class="badge m">Maîtrisé</span>`:st==="l"?`<span class="badge l">En cours</span>`:st==="r"?`<span class="badge r">À revoir</span>`:"";
+}
+const IV=[0,1,10,1440,4320,10080]; // minutes avant de reposer la question, selon la boîte
+const dayKey=t=>{const x=new Date(t);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0");};
+function grade(id,ok){
+  const now=Date.now(), s=P.items[id]||[0,0,0,0];
+  const b=ok?Math.min(5,s[0]+1):Math.max(0,s[0]-2);
+  P.items[id]=[b,s[1]+1,s[2]+(ok?1:0),now];
+  const dk=dayKey(now); P.days[dk]=(P.days[dk]||0)+1;
+  const keep=Object.keys(P.days).sort().slice(-60); P.days=Object.fromEntries(keep.map(k=>[k,P.days[k]]));
+  save();
+}
+
+// ——— Enregistrement : dans ce navigateur (aucun compte, aucune donnée envoyée) ———
+const LSK="bloc-constitutionnalite-decouverte-v1";
+let where="none";
+function loadLocal(){
+  try{
+    const raw=localStorage.getItem(LSK);
+    if(raw){const o=JSON.parse(raw); if(o&&o.items) P=Object.assign({v:1,items:{},days:{},best:0,resetAt:0},o);}
+    localStorage.setItem(LSK+"-t","1"); localStorage.removeItem(LSK+"-t");
+    where="local";
+  }catch(e){ where="none"; }
+}
+function save(){
+  try{ localStorage.setItem(LSK,JSON.stringify(P)); where="local"; }catch(e){ where="none"; }
+  renderSync();
+}
+function storageLabel(){
+  return where==="local" ? "Sauvegardé dans ce navigateur" : "Non sauvegardé";
+}
+function renderSync(){
+  const st=$("saveState"); if(st){ st.textContent=storageLabel(); st.className="save "+(where==="local"?"ok":"warn"); }
+  const el=$("sync"); if(!el) return;
+  el.textContent = where==="local"
+    ? "Enregistrée dans ce navigateur, sur cet appareil. Pour la retrouver sur un autre appareil, utilise le code de sauvegarde ci-dessous. Aucune donnée n'est envoyée en ligne."
+    : "Ce navigateur bloque l'enregistrement (navigation privée ?) : la progression sera perdue en rechargeant la page. Pense au code de sauvegarde ci-dessous.";
+}
+
+// ——— Code de sauvegarde (secours, marche partout) ———
+function exportCode(){
+  let body="";
+  ITEMS.forEach((it,i)=>{ const s=P.items[it.id]; if(s) body+=i.toString(36).padStart(2,"0")+s[0]; });
+  return LSK.split("-")[0].slice(0,4).toUpperCase()+"1:"+body;
+}
+function importCode(code){
+  const m=String(code).trim().match(/^[A-Z]{1,4}1:([0-9a-z]*)$/i); if(!m) return -1;
+  const body=m[1].toLowerCase(); if(body.length%3) return -1;
+  const now=Date.now(); let n=0;
+  for(let k=0;k<body.length;k+=3){
+    const i=parseInt(body.slice(k,k+2),36), b=+body[k+2], it=ITEMS[i];
+    if(!it||isNaN(b)||b>5) continue;
+    const cur=P.items[it.id];
+    if(!cur||cur[0]<b){ P.items[it.id]=[b,Math.max(1,cur?cur[1]:1),cur?cur[2]:0,now]; n++; }
+  }
+  if(n) save();
+  return n;
+}
+function renderBackup(){
+  const box=$("backupBox"); if(!box) return;
+  box.innerHTML=`<details class="backup"><summary>Code de sauvegarde (pour changer d'appareil ou de navigateur)</summary>
+    <p>Copie ce code à la fin d'une séance (dans tes notes, par exemple) et colle-le sur ton autre appareil pour y retrouver ta progression. Utile aussi avant de vider les données de ton navigateur.</p>
+    <div class="row"><button type="button" class="btn ghost" id="bkCopy">Copier mon code</button><span class="lbl" id="bkMsg" aria-live="polite"></span></div>
+    <textarea id="bkOut" readonly rows="2" hidden></textarea>
+    <label class="lbl" for="bkIn">Coller un code</label>
+    <div class="row"><input id="bkIn" type="text" autocomplete="off" placeholder="BLOC1:…"><button type="button" class="btn" id="bkGo">Importer</button></div>
+  </details>`;
+  $("bkIn").placeholder=exportCode().split(":")[0]+":…";
+  $("bkCopy").onclick=async()=>{
+    const c=exportCode(), out=$("bkOut"); out.value=c;
+    try{ await navigator.clipboard.writeText(c); $("bkMsg").textContent="Code copié."; out.hidden=true; }
+    catch(e){ out.hidden=false; out.focus(); out.select(); $("bkMsg").textContent="Copie automatique impossible : sélectionne le code ci-dessous et copie-le."; }
+  };
+  $("bkGo").onclick=()=>{
+    const n=importCode($("bkIn").value);
+    $("bkMsg").textContent = n<0 ? "Ce code n'est pas reconnu. Vérifie qu'il est complet." : n===0 ? "Rien de nouveau dans ce code." : `${n} question${n>1?"s":""} récupérée${n>1?"s":""}.`;
+    if(n>0){ $("bkIn").value=""; refreshAll(false); }
+  };
+}
+
+// ——— Choix de la prochaine question ———
+let cur=null, q=null, qd="text", fmt="qcm", cmode="prog", shown=false, picked=null, unlockMsg="";
+let seen=0, known=0, streak=0;
+function candidates(){
+  return ITEMS.filter(it=>(!src||it.e.s===src)&&(cmode==="prog"?true:cmode==="art"?it.lv===1:it.lv>1));
+}
+function pick(){
+  let c=candidates(); if(c.length>1) c=c.filter(it=>it!==cur);
+  if(!c.length) return null;
+  const now=Date.now();
+  const seenL=c.filter(it=>seenIt(it.id)), fresh=c.filter(it=>!seenIt(it.id));
+  const order=(a,b)=>box(a.id)-box(b.id)||P.items[a.id][3]-P.items[b.id][3];
+  const due=seenL.filter(it=>{const s=P.items[it.id];return now>=s[3]+IV[s[0]]*60000;}).sort(order);
+  const learning=seenL.filter(it=>box(it.id)<3).length;
+  const top=(arr,n)=>arr[Math.floor(Math.random()*Math.min(n,arr.length))];
+  if(due.length&&(learning>=8||!fresh.length||Math.random()<.6)) return top(due,3);
+  if(fresh.length){
+    const dec=fresh.filter(it=>it.lv>1);
+    if(dec.length&&Math.random()<.5) return top(dec,dec.length);
+    return top(fresh,fresh.length);
+  }
+  return top(seenL.sort(order),4);
+}
+
+// ——— Construction des questions ———
+const isPr=d=>d.s==="F"||d.s==="O";
+const shuffle=x=>{for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;};
+const entryLabel=d=>isPr(d)?SRC[d.s].short+" · "+d.t:fullRef(d);
+const mask=t=>t.replace(/\b(art\.|articles?|al\.|alinéas?)\s*\d+(-\d+)?(\s*(,|et)\s*\d+(-\d+)?)*/gi,"$1 …");
+function fill(correct,pool,labelOf){
+  const out=[{label:correct,good:true}], used=new Set([correct]);
+  for(const x of pool){ const l=labelOf(x); if(!l||used.has(l)) continue; used.add(l); out.push({label:l,good:false}); if(out.length===4) break; }
+  return shuffle(out);
+}
+function prefer(list,sameFn){ return shuffle(list.filter(sameFn)).concat(shuffle(list.filter(x=>!sameFn(x)))); }
+function build(it){
+  const d=it.e;
+  if(it.lv===1){
+    const dirn=isPr(d)?"text":(dir==="mix"?(Math.random()<.5?"text":"ref"):dir);
+    qd=dirn;
+    if(dirn==="text"){
+      const pool=prefer(DATA.filter(x=>x!==d&&isPr(x)===isPr(d)),x=>x.s===d.s);
+      return {kind:"A-text",
+        ask:isPr(d)?"Quel principe ou objectif correspond à ce contenu ?":"De quel article s'agit-il ?",
+        body:`<p class="q">${esc(d.q?("« "+d.q+" »"):d.r)}</p>`,
+        opts:fill(entryLabel(d),pool,entryLabel), refStyle:!isPr(d),
+        answer:`<span class="eyebrow">${esc(SRC[d.s].name)}</span><h3>${esc(isPr(d)?d.t:fullRef(d)+" · "+d.t)}</h3>${decList(d,2)}`};
+    }
+    const pool=prefer(DATA.filter(x=>x!==d&&!isPr(x)),x=>x.s===d.s);
+    return {kind:"A-ref", ask:"Que prévoit cet article ?", body:`<p class="q big">${esc(fullRef(d))}</p>`,
+      opts:fill(d.t,pool,x=>x.t),
+      answer:`<h3>${esc(d.t)}</h3><p>${esc(d.r)}</p>${decList(d,3)}`};
+  }
+  const x=it.dec, nx=norm(x.x);
+  const decAnswer=`<span class="eyebrow">${esc(entryLabel(d))} · ${esc(d.t)}</span><h3>${esc(x.ref)}</h3>${x.ap?`<p>${esc(cap(x.ap))}</p>`:""}`;
+  if(it.lv===2){
+    const pool=prefer(DATA.filter(e=>e!==d&&!e.dn.includes(nx)),e=>e.s===d.s);
+    return {kind:"R", ask:"Sur quel texte cette décision s'appuie-t-elle ?",
+      body:`<p class="q">${esc(x.ref)}</p>${x.ap?`<p>${esc(cap(mask(x.ap)))}</p>`:""}`,
+      opts:fill(entryLabel(d),pool,entryLabel), refStyle:!isPr(d), answer:decAnswer};
+  }
+  const others=DECS.filter(y=>y.x!==x.x);
+  const useScope=x.ap.length<=240&&Math.random()<.5;
+  if(useScope){
+    const pool=prefer(others.filter(y=>y.ap&&y.ap.length<=240),y=>y.e.s===d.s);
+    return {kind:"D-scope", ask:"Qu'a jugé cette décision ?",
+      body:`<p class="ctx">${esc(entryLabel(d))}</p><p class="q">${esc(x.ref)}</p>`,
+      opts:fill(cap(x.ap),pool,y=>cap(y.ap)), long:true, answer:decAnswer};
+  }
+  const pool=prefer(others,y=>y.e===d).sort((a,b)=>(b.e===d)-(a.e===d)||(b.e.s===d.s)-(a.e.s===d.s));
+  return {kind:"D-ref", ask:"Quelle décision a jugé cela ?",
+    body:`<p class="ctx">${esc(entryLabel(d))}</p><p class="q">${esc(cap(x.ap))}</p>`,
+    opts:fill(x.ref,pool,y=>y.ref), answer:decAnswer};
+}
+function decList(d,n){ return d.d.length?`<ul class="dec">${d.d.slice(0,n).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""; }
+
+// ——— Affichage ———
+function newCard(){
+  const it=pick(); cur=it; shown=false; picked=null; unlockMsg="";
+  q=it?build(it):null;
+  drawCard();
+}
+const TIER_NAME={1:"",2:"",3:""};
+function statsHTML(){
+  return `<div class="stats"><span>Cette séance : <b>${known}</b> / ${seen} justes</span><span>série <b>${streak}</b> (record ${P.best||0})</span><span id="saveState" class="save ${where==="local"?"ok":"warn"}">${storageLabel()}</span></div>`;
+}
+function drawCard(){
+  const card=$("card");
+  if(!cur||!q){
+    card.className="card";
+    card.innerHTML=`<p class="q">${cmode==="dec"?"Aucune décision dans ce texte.":"Rien à réviser ici pour l'instant."} Change de texte ou de contenu.</p>`;
+    return;
+  }
+  const d=cur.e;
+  card.className=`card ${d.s}`;
+  const head=`<div class="row" style="justify-content:space-between"><span class="eyebrow">${esc(q.ask)}</span><span class="eyebrow">${TIER_NAME[cur.lv]}</span></div>${q.body}`;
+  if(fmt==="qcm"){
+    const done=picked!==null;
+    card.innerHTML=head+
+      `<div class="opts" role="group" aria-label="Réponses">${q.opts.map((o,i)=>{
+        let cls="opt"+(q.refStyle?" ref":"")+(q.long?" long":"");
+        if(done){ if(o.good) cls+=" good"; else if(i===picked) cls+=" bad"; else cls+=" dim"; }
+        return `<button type="button" class="${cls}" data-i="${i}" ${done?"disabled":""}><span class="k">${"ABCD"[i]}</span><span>${esc(o.label)}</span></button>`;
+      }).join("")}</div>`+
+      (done?`<p class="verdict ${q.opts[picked].good?"good":"bad"}">${q.opts[picked].good?"Bonne réponse.":"Raté. La bonne réponse est en vert."}</p><div class="answer">${q.answer}</div>${unlockMsg}`:"")+
+      `<div class="btns">${done?`<button type="button" class="btn" id="next">Question suivante</button>`:`<button type="button" class="btn ghost" id="skip">Passer</button>`}</div>`+statsHTML();
+    card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(+b.dataset.i));
+    if(done){ $("next").onclick=newCard; $("next").focus(); } else $("skip").onclick=newCard;
+    return;
+  }
+  card.innerHTML=(!shown&&unlockMsg?unlockMsg:"")+head+(shown?`<div class="answer">${q.answer}</div>`:"")+
+    `<div class="btns">${shown?`<button type="button" class="btn" id="ok">Je l'avais</button><button type="button" class="btn ghost" id="ko">À revoir</button>`
+      :`<button type="button" class="btn" id="reveal">Voir la réponse</button><button type="button" class="btn ghost" id="skip">Passer</button>`}</div>`+statsHTML();
+  if(shown){ $("ok").onclick=()=>answer(true,true); $("ko").onclick=()=>answer(false,true); $("ok").focus(); }
+  else{ $("reveal").onclick=()=>{shown=true;drawCard();}; $("skip").onclick=newCard; }
+}
+function answer(ok,next){
+  const kids=kidsOf(cur.id), before=kids.filter(unlocked).length;
+  seen++; if(ok){known++;streak++;P.best=Math.max(P.best||0,streak);} else streak=0;
+  grade(cur.id,ok);
+  const gained=kids.filter(unlocked).length-before;
+  unlockMsg = false ? `<p class="unlock">Débloqué : ${gained} ${cur.lv===1?(gained>1?"décisions à rattacher":"décision à rattacher"):"question de palier 3"} pour ${esc(entryLabel(cur.e))}.</p>` : "";
+  refreshAll(false);
+  if(next){ const m=unlockMsg; newCard(); if(m){ unlockMsg=m; drawCard(); } }
+}
+function choose(i){ if(picked!==null) return; picked=i; answer(q.opts[i].good,false); drawCard(); }
+document.addEventListener("keydown",e=>{
+  if(mode!=="quiz"||fmt!=="qcm"||!q||e.target.tagName==="INPUT") return;
+  const k="1234abcd".indexOf(e.key.toLowerCase());
+  if(k>=0&&picked===null&&q.opts[k%4]){ choose(k%4); e.preventDefault(); }
+});
+
+// ——— Indicateur de progression ———
+function renderProgress(){
+  if(!$("gauge")) return;
+  const m=ITEMS.filter(it=>box(it.id)>=3).length, vu=ITEMS.filter(it=>seenIt(it.id)).length;
+  const score=ITEMS.reduce((a,it)=>a+Math.min(box(it.id),3)/3,0);
+  const pc=ITEMS.length?Math.round(100*score/ITEMS.length):0;
+  $("pct").textContent=pc; $("gaugeFill").style.width=pc+"%"; $("gauge").setAttribute("aria-valuenow",pc);
+  $("gsub").textContent=`${m} question${m>1?"s":""} maîtrisée${m>1?"s":""} sur ${ITEMS.length} · ${vu} déjà vue${vu>1?"s":""}`;
+  renderSync();
+}
+function refreshAll(redraw=true){
+  renderTiles(); renderProgress();
+  if(mode==="search") render(); else if(redraw&&(picked===null&&!shown)) newCard();
+}
+function restoreReset(){
+  $("resetBox").innerHTML=`<button type="button" class="linkbtn" id="reset">Remettre ma progression à zéro</button>`;
+  bindReset();
+}
+function bindReset(){ const r=$("reset"); if(r) r.onclick=()=>{ $("resetBox").innerHTML=`<div class="confirm"><span>Tout effacer dans ce navigateur ?</span><button type="button" class="btn" id="resetYes">Oui, remettre à zéro</button><button type="button" class="btn ghost" id="resetNo">Annuler</button></div>`; $("resetNo").onclick=restoreReset; $("resetYes").onclick=()=>{ P={v:1,items:{},days:{},best:0,resetAt:Date.now()}; seen=known=streak=0; save(); restoreReset(); refreshAll(); }; $("resetNo").focus(); }; }
+
+function setDir(x){ dir=x; ["text","ref","mix"].forEach(k=>$("d-"+k).setAttribute("aria-pressed",k===x)); newCard(); }
+function setFmt(x){ fmt=x; $("f-qcm").setAttribute("aria-pressed",x==="qcm"); $("f-card").setAttribute("aria-pressed",x==="card"); newCard(); }
+function setContent(x){ cmode=x; ["prog","art","dec"].forEach(k=>$("c-"+k).setAttribute("aria-pressed",k===x)); newCard(); }
+$("d-text").onclick=()=>setDir("text"); $("d-ref").onclick=()=>setDir("ref"); $("d-mix").onclick=()=>setDir("mix");
+$("f-qcm").onclick=()=>setFmt("qcm"); $("f-card").onclick=()=>setFmt("card");
+bindReset();
+$("c-prog").onclick=()=>setContent("prog"); $("c-art").onclick=()=>setContent("art"); $("c-dec").onclick=()=>setContent("dec");
+
+function setMode(m){
+  mode=m;
+  $("m-search").setAttribute("aria-pressed",m==="search");
+  $("m-quiz").setAttribute("aria-pressed",m==="quiz");
+  $("searchBox").hidden=m!=="search"; $("searchView").hidden=m!=="search";
+  $("quizBox").hidden=m!=="quiz"; $("quizView").hidden=m!=="quiz";
+  if(m==="quiz"){ if(!cur||(src&&cur.e.s!==src)) newCard(); else drawCard(); renderProgress(); } else render();
+}
+$("m-search").onclick=()=>setMode("search");
+$("m-quiz").onclick=()=>setMode("quiz");
+
+loadLocal(); renderTiles(); render(); renderBackup();
+</script>
+
+</body></html>
